@@ -3,7 +3,7 @@
 3D Slicer extension for automated quantification of aortic valve calcification using the Agatston scoring method.
 
 ![Version](https://img.shields.io/badge/version-3.0-blue)
-![License](https://img.shields.io/badge/license-MIT-green)
+![License](https://img.shields.io/badge/license-Restrictive-orange)
 ![3D Slicer](https://img.shields.io/badge/3D%20Slicer-5.0+-red)
 
 ## Authors
@@ -133,7 +133,7 @@ Contributions welcome! Fork, create feature branch, commit, push, and open a Pul
 
 ## 📄 License
 
-MIT License - see [LICENSE](LICENSE) file for details.
+**Restrictive License** - Free for personal, educational, research, and clinical use. Redistribution and commercial use prohibited without authorization. See [LICENSE](LICENSE) for details.
 
 ## 🙏 Acknowledgments
 
