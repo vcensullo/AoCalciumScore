@@ -6,7 +6,7 @@ the Agatston scoring method. Features a guided tab-based workflow with automated
 segmentation, classification, and comprehensive PDF reporting.
 
 Author: Vittorio Censullo
-Institution: AITeRTC (Artificial Intelligence in Teleradiology and Telemedicine Research Center)
+Institution: AITeRTC (Associazione Italiana Tecnici di Radiologia Esperti in TC)
 Year: 2025
 Version: 3.0 (Non-Contrast CT Only)
 License: MIT
@@ -100,8 +100,7 @@ class AoCaScore(ScriptedLoadableModule):
         </ul>
         """
         self.parent.acknowledgementText = """
-        <p>Developed by <b>Vittorio Censullo</b> at <b>AITeRTC</b> (Artificial Intelligence in
-        Teleradiology and Telemedicine Research Center) - 2025</p>
+        <p>Developed by <b>Vittorio Censullo</b> at <b>AITeRTC</b> (Associazione Italiana Tecnici di Radiologia Esperti in TC) - 2025</p>
 
         <p>This plugin provides standardized aortic valve calcium scoring according to
         ACC/AHA guidelines and recent literature, including sex-specific severity thresholds.</p>

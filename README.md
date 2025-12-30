@@ -9,7 +9,7 @@
 ## Authors
 
 **Vittorio Censullo**  
-**AITeRTC** - *Associazione Italiana Tecnici di Radiologia e Radiodiagnostica e Tomografia Computerizzata ETS*  
+**AITeRTC** - *Associazione Italiana Tecnici di Radiologia Esperti in TC*  
 2025
 
 ## 🌟 Key Features
@@ -138,14 +138,14 @@ MIT License - see [LICENSE](LICENSE) file for details.
 ## 🙏 Acknowledgments
 
 - **Developed by**: Vittorio Censullo
-- **Co-authored by**: **AITeRTC** - *Associazione Italiana Tecnici Esperti in TC*
+- **Co-authored by**: **AITeRTC** - *Associazione Italiana Tecnici di Radiologia Esperti in TC*
 - Built using **3D Slicer** open-source platform
 - Based on **ACC/AHA** clinical guidelines
 
 ## 📞 Contact
 
 **Vittorio Censullo**  
-**AITeRTC** - Associazione Italiana Tecnici Esperti in TC  
+**AITeRTC** - Associazione Italiana Tecnici di Radiologia Esperti in TC  
 GitHub: [@vcensullo](https://github.com/vcensullo)
 
 Issues: [GitHub Issues](https://github.com/vcensullo/AoCalciumScore/issues)
@@ -161,7 +161,7 @@ If you use this plugin in your research please cite
   year = {2025},
   publisher = {GitHub},
   url = {https://github.com/vcensullo/AoCalciumScore},
-  institution = {AITeRTC - Associazione Italiana Tecnici di Radiologia e Radiodiagnostica e Tomografia Computerizzata ETS}
+  institution = {AITeRTC - Associazione Italiana Tecnici di Radiologia Esperti in TC}
 }
 ```
 
