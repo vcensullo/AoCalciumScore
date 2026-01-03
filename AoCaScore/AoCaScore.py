@@ -2299,29 +2299,21 @@ class AoCaScoreLogic(ScriptedLoadableModuleLogic):
         # This matches commercial software like Syngo.via
         from scipy import ndimage
 
-        # CRITICAL: Check for overlapping slices (common in cardiac CT)
-        # Standard Agatston uses 3.0mm thickness with 3.0mm increment (no overlap)
-        # If spacing[2] < 3.0mm, we have overlapping slices → must skip slices!
-        STANDARD_SLICE_INCREMENT = 3.0  # mm (Agatston standard)
+        # Standard Agatston uses 3.0mm slice thickness
         STANDARD_SLICE_THICKNESS = 3.0  # mm (Agatston standard)
         sliceSpacing = spacing[2]
 
-        # Determine how many slices to skip based on spacing
-        if sliceSpacing < 2.5:  # Overlapping slices detected
-            sliceStep = max(1, int(round(STANDARD_SLICE_INCREMENT / sliceSpacing)))
-            print(f"⚠ Detected overlapping slices (spacing={sliceSpacing:.1f}mm < 3.0mm)")
-            print(f"  → Using every {sliceStep} slices to match Agatston standard (3.0mm increment)")
-        else:
-            sliceStep = 1
-            print(f"✓ Slice spacing {sliceSpacing:.1f}mm is adequate (≥2.5mm), processing all slices")
+        # Normalization factor for non-3mm slices
+        # Process ALL slices and normalize score at the end
+        # Reference: Lassoan et al., 3D Slicer Agatston implementation
+        sliceNormalizationFactor = sliceSpacing / STANDARD_SLICE_THICKNESS
+        sliceStep = 1  # Process all slices
 
-        # Warning if slice thickness is unusual
-        if sliceThickness > 4.0:
-            print(f"⚠ WARNING: Slice thickness ({sliceThickness:.1f}mm) is thicker than Agatston standard (3mm)")
-            print(f"  → This may affect score accuracy, but calculation will proceed")
-        elif sliceThickness < 2.0:
-            print(f"✓ High-resolution acquisition: thickness={sliceThickness:.1f}mm, spacing={sliceSpacing:.1f}mm")
-            print(f"  → Excellent for calcium detection, normalized to Agatston standard")
+        print(f"Slice spacing: {sliceSpacing:.2f}mm, normalization factor: {sliceNormalizationFactor:.3f}")
+        if abs(sliceSpacing - STANDARD_SLICE_THICKNESS) < 0.1:
+            print(f"  -> Standard 3mm acquisition, no normalization needed")
+        else:
+            print(f"  -> Score will be normalized to 3mm equivalent")
 
         # Use 2D slice-by-slice labeling (Agatston standard)
         # This prevents overestimation from 3D connectivity
@@ -2460,6 +2452,12 @@ class AoCaScoreLogic(ScriptedLoadableModuleLogic):
         # Calculate statistics
         meanDensity = np.mean(allDensities) if allDensities else 0
         maxDensity = np.max(allDensities) if allDensities else 0
+
+        # Apply slice normalization factor to score
+        # This normalizes the score to 3mm equivalent
+        normalizedAgatston = totalAgatston * sliceNormalizationFactor
+        print(f"Raw score: {totalAgatston:.1f}, Normalized score: {normalizedAgatston:.1f} (factor: {sliceNormalizationFactor:.3f})")
+        totalAgatston = normalizedAgatston
 
         # Calculate equivalent mass (mg)
         # Standard formula: mass = volume (mm³) × mean_density (HU) × CT_calibration_factor
